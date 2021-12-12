@@ -1,0 +1,25 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+body {
+  background-color: hsl(250, 20%, 10%);
+  color: white;
+  line-height: 1.6;
+  font-family: "Poppins", sans-serif;
+}
+
+#root {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  margin: 1rem;
+  gap: 2rem;
+  margin: 0 auto;
+  min-height: 95vh; /* Fuck mobile browsers, all my homies hate mobile browsers */
+}
+
+a {
+  text-decoration: none;
+  color: #ffa500;
+}
+a:hover {
+  color: wheat;
+}
