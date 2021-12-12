@@ -1,3 +1,10 @@
+#about {
+  display: grid;
+  place-items: center;
+  gap: 1rem;
+}
+
 #about p {
+  max-width: 60ch;
   text-align: justify;
 }
