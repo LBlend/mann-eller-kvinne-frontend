@@ -1,0 +1,6 @@
+footer {
+  display: grid;
+  grid-template-rows: auto auto;
+  justify-self: center;
+  justify-items: center;
+}
