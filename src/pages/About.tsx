@@ -37,8 +37,12 @@ const About = () => (
       seriøse formål.
     </p>
     <p>
-      Takk til LtgOslo som har laget det taggede korpuset, datasettet, som er
-      brukt til å trene maskinlæringsmodellen.
+      Takk til{" "}
+      <a href="https://www.mn.uio.no/ifi/english/research/groups/ltg/">
+        LtgOslo
+      </a>{" "}
+      som har laget det taggede korpuset, datasettet, som er brukt til å trene
+      maskinlæringsmodellen.
     </p>
   </article>
 );
