@@ -24,6 +24,11 @@ a:hover {
   color: wheat;
 }
 
+nav {
+  justify-self: right;
+  padding: 0.5rem;
+}
+
 @media only screen and (max-device-width: 480px) {
   #root {
     min-height: 95vh; /* Fuck mobile browsers, all my homies hate mobile browsers */

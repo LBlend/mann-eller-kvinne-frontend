@@ -1,7 +1,14 @@
+import { Link } from "react-router-dom";
+
 const Home = () => (
-  <main>
-    <p>yeet</p>
-  </main>
+  <>
+    <nav>
+      <Link to="/about">Om siden</Link>
+    </nav>
+    <main>
+      <p>yeet</p>
+    </main>
+  </>
 );
 
 export default Home;
