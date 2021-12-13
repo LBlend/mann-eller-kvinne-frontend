@@ -1,6 +1,7 @@
 import styles from "./About.module.css";
 
 import { Link } from "react-router-dom";
+import Logo from "../assets/mann-eller-kvinne.png";
 
 const About = () => (
   <>
@@ -9,10 +10,7 @@ const About = () => (
     </nav>
     <article id={styles.about}>
       <h1>Om siden</h1>
-      <img
-        src="https://raw.githubusercontent.com/LBlend/mann-eller-kvinne/main/.static/mann-eller-kvinne.png?token=AF55TQTQ2EPX6JP33MO4NLK73QQZG"
-        alt="Logo"
-      />
+      <img src={Logo} alt="Logo" />
       <p>
         Nettsida gjetter om du er mann eller kvinne ved bruk av enkel
         maskinlæring. Maskinlæringsmodellen er trent på over 3000 anmeldelser
