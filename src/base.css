@@ -13,7 +13,7 @@ body {
   margin: 1rem;
   gap: 2rem;
   margin: 0 auto;
-  min-height: 95vh; /* Fuck mobile browsers, all my homies hate mobile browsers */
+  min-height: 100vh;
 }
 
 a {
@@ -22,4 +22,10 @@ a {
 }
 a:hover {
   color: wheat;
+}
+
+@media only screen and (max-device-width: 480px) {
+  #root {
+    min-height: 95vh; /* Fuck mobile browsers, all my homies hate mobile browsers */
+  }
 }
