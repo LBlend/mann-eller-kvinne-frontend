@@ -1,7 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 
+:root {
+  --background-color: hsl(250, 20%, 10%);
+  --link-color: hsl(40, 100%, 50%);
+  --link-color-hover: hsl(40, 100%, 70%);
+}
+
 body {
-  background-color: hsl(250, 20%, 10%);
+  background-color: var(--background-color);
   color: white;
   line-height: 1.6;
   font-family: "Poppins", sans-serif;
@@ -18,10 +24,10 @@ body {
 
 a {
   text-decoration: none;
-  color: #ffa500;
+  color: var(--link-color);
 }
 a:hover {
-  color: wheat;
+  color: var(--link-color-hover);
 }
 
 nav {
