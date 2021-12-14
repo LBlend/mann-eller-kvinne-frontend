@@ -35,6 +35,7 @@ const Input = () => {
           setText(e.target.value);
         }}
       ></textarea>
+      <h2>Velg modell</h2>
       <select
         onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
           setModel(e.target.value)
