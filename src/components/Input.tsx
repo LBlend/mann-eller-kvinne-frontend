@@ -29,8 +29,8 @@ const Input = () => {
   return (
     <>
       <textarea
-        rows={2}
-        cols={60}
+        rows={3}
+        cols={40}
         onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
           setText(e.target.value);
         }}
