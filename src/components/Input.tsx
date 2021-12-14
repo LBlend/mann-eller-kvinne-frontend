@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useDebounce } from "use-debounce";
-import { predict } from "../api/Api";
+
+// Utils
+import {
+  setDefaultColors,
+  setMaleColors,
+  setFemaleColors,
+} from "../utils/Colors";
+import { predict } from "../utils/Api";
 
 const Input = () => {
   const [text, setText] = useState("");
@@ -9,14 +16,13 @@ const Input = () => {
 
   useEffect(() => {
     if (!text) {
-      document.body.style.backgroundColor = "var(--background-color)";
+      setDefaultColors();
     }
   }, [text]);
 
   useEffect(() => {
     if (model && debouncedText) {
       console.log("debounce", debouncedText, model);
-      document.body.style.backgroundColor = "blue";
     }
   }, [debouncedText, model]);
 

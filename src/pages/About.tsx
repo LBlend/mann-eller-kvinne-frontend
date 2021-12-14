@@ -1,6 +1,9 @@
+import { Link } from "react-router-dom";
+
+// Page styling
 import styles from "./About.module.css";
 
-import { Link } from "react-router-dom";
+// Resources
 import Logo from "../assets/mann-eller-kvinne.png";
 
 const About = () => (

@@ -1,7 +1,9 @@
-import styles from "./Home.module.css";
-
 import { Link } from "react-router-dom";
 
+// Page styling
+import styles from "./Home.module.css";
+
+// Components
 import Header from "../components/Header";
 import Input from "../components/Input";
 
