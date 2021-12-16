@@ -1,0 +1,15 @@
+#predictionContainer {
+  display: grid;
+  margin-top: 2rem;
+}
+
+#loading {
+  display: grid;
+  gap: 1rem;
+  justify-items: center;
+}
+
+#prediction {
+  display: grid;
+  text-align: center;
+}
