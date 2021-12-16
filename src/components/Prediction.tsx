@@ -24,7 +24,7 @@ const Prediction = (props: PredictionProps) => {
     if (props.prediction) {
       return (
         <div id={styles.prediction}>
-          <p>
+          <p className={styles.separator}>
             Du er sannsynligvis en <b>{props.predicting}</b>
           </p>
           <p>Sannylighet for mann: {props.prediction.M}</p>

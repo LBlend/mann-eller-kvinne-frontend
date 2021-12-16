@@ -13,3 +13,7 @@
   display: grid;
   text-align: center;
 }
+
+.separator {
+  margin-bottom: 1rem;
+}
