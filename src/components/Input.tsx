@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useDebounce } from "use-debounce";
 
+// Component styling
+import styles from "./Input.module.css";
+
 // Utils
 import {
   setDefaultColors,
@@ -27,7 +30,7 @@ const Input = () => {
   }, [debouncedText, model]);
 
   return (
-    <>
+    <div id={styles.inputContainer}>
       <textarea
         rows={3}
         cols={40}
@@ -45,7 +48,7 @@ const Input = () => {
         <option value="bayes">Naive Bayes</option>
         <option value="rnn">Recurrent neural network</option>
       </select>
-    </>
+    </div>
   );
 };
 
