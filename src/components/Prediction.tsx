@@ -11,7 +11,7 @@ type PredictionProps = {
 };
 
 const Prediction = (props: PredictionProps) => {
-  const getPrediction = () => {
+  const predictionOutput = () => {
     if (props.predicting) {
       return (
         <div id={styles.loading}>
@@ -39,7 +39,7 @@ const Prediction = (props: PredictionProps) => {
   return (
     <div id={styles.predictionContainer}>
       <h2>🤖 Maskinen gjetter 🤖</h2>
-      {getPrediction()}
+      {predictionOutput()}
     </div>
   );
 };
