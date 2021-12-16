@@ -5,7 +5,7 @@ export const predict = async (text: String, model: String) => {
     text: text,
     clf: model,
   };
-  const response = await fetch(`${apiBaseUrl}/mann-eller-kvinne`, {
+  const response = await fetch(`${apiBaseUrl}`, {
     method: "POST",
     body: JSON.stringify(data),
   });
