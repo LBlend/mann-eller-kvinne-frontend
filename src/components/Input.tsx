@@ -1,32 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useDebounce } from "use-debounce";
+import { InputContext } from "../contexts/InputContext";
 
 // Component styling
 import styles from "./Input.module.css";
-
-// Utils
-import {
-  setDefaultColors,
-  setMaleColors,
-  setFemaleColors,
-} from "../utils/Colors";
-import { predict } from "../utils/Api";
 
 const Input = () => {
   const [text, setText] = useState("");
   const [debouncedText] = useDebounce(text, 1000);
   const [model, setModel] = useState("bayes");
 
-  useEffect(() => {
-    if (!text) {
-      setDefaultColors();
-    }
-  }, [text]);
+  const inputContext = useContext(InputContext);
 
   useEffect(() => {
-    if (model && debouncedText) {
-      console.log("debounce", debouncedText, model);
-    }
+    inputContext.setInput({ text: debouncedText, model: model });
   }, [debouncedText, model]);
 
   return (
@@ -52,4 +39,5 @@ const Input = () => {
   );
 };
 
+export { InputContext };
 export default Input;

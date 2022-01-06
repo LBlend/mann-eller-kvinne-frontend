@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { InputContextProvider } from "../contexts/InputContext";
 
 // Page styling
 import styles from "./Home.module.css";
@@ -15,8 +16,10 @@ const Home = () => (
     </nav>
     <main id={styles.main}>
       <Header />
-      <Input />
-      <Prediction predicting={false} prediction={{ M: 0, F: 0 }} />
+      <InputContextProvider>
+        <Input />
+        <Prediction />
+      </InputContextProvider>
     </main>
   </>
 );
