@@ -1,12 +1,13 @@
 import { createContext, useMemo, useState } from "react";
 
+import { Input } from "../utils/Types";
+
 export const InputContext = createContext({
   state: { text: "", model: "bayes" },
-  setInput: (input: any) => {},
+  setInput: (input: Input) => {},
 });
 
 export const InputContextProvider = (props: any) => {
-  // TODO: Replace any type
   const [state, setState] = useState({
     text: "",
     model: "bayes",
@@ -15,7 +16,7 @@ export const InputContextProvider = (props: any) => {
   const provider = useMemo(
     () => ({
       state,
-      setInput: (input: any) => {
+      setInput: (input: Input) => {
         setState((prev) => ({ ...prev, text: input.text, model: input.model }));
       },
     }),
