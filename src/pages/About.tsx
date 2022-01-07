@@ -1,16 +1,16 @@
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"
 
 // Page styling
-import styles from "./About.module.css";
+import styles from "./About.module.css"
 
 // Utils
-import { setDefaultColors } from "../utils/Colors";
+import { setDefaultColors } from "../utils/Colors"
 
 // Resources
-import Logo from "../assets/mann-eller-kvinne.png";
+import Logo from "../assets/mann-eller-kvinne.png"
 
 const About = () => {
-  setDefaultColors();
+  setDefaultColors()
   return (
     <>
       <nav>
@@ -58,7 +58,7 @@ const About = () => {
         </p>
       </article>
     </>
-  );
-};
+  )
+}
 
-export default About;
+export default About

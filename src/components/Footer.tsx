@@ -1,5 +1,5 @@
 // Component styling
-import styles from "./Footer.module.css";
+import styles from "./Footer.module.css"
 
 const Footer = () => (
   <footer id={styles.footer}>
@@ -9,6 +9,6 @@ const Footer = () => (
     </p>
     <a href="https://github.com/LBlend/mann-eller-kvinne">Kildekode</a>
   </footer>
-);
+)
 
-export default Footer;
+export default Footer

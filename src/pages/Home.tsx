@@ -1,13 +1,13 @@
-import { Link } from "react-router-dom";
-import { InputContextProvider } from "../contexts/InputContext";
+import { Link } from "react-router-dom"
+import { InputContextProvider } from "../contexts/InputContext"
 
 // Page styling
-import styles from "./Home.module.css";
+import styles from "./Home.module.css"
 
 // Components
-import Header from "../components/Header";
-import Input from "../components/Input";
-import Prediction from "../components/Prediction";
+import Header from "../components/Header"
+import Input from "../components/Input"
+import Prediction from "../components/Prediction"
 
 const Home = () => (
   <>
@@ -22,6 +22,6 @@ const Home = () => (
       </InputContextProvider>
     </main>
   </>
-);
+)
 
-export default Home;
+export default Home

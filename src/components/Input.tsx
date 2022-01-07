@@ -1,22 +1,22 @@
-import React, { useContext } from "react";
-import { useDebouncedCallback } from "use-debounce";
-import { InputContext } from "../contexts/InputContext";
+import React, { useContext } from "react"
+import { useDebouncedCallback } from "use-debounce"
+import { InputContext } from "../contexts/InputContext"
 
 // Component styling
-import styles from "./Input.module.css";
+import styles from "./Input.module.css"
 
 const Input = () => {
-  const { setInput, state } = useContext(InputContext);
-  const debounced = useDebouncedCallback((value) => {
-    setInput({ ...state, text: value });
-  }, 1000);
+  const { setInput, state } = useContext(InputContext)
+  const debounced = useDebouncedCallback(value => {
+    setInput({ ...state, text: value })
+  }, 1000)
 
   const inputHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setInput({
       ...state,
       [e.target.name]: e.target.value,
-    });
-  };
+    })
+  }
 
   return (
     <div id={styles.inputContainer}>
@@ -40,7 +40,7 @@ const Input = () => {
         <option value="rnn">Recurrent neural network</option>
       </select>
     </div>
-  );
-};
+  )
+}
 
-export default Input;
+export default Input

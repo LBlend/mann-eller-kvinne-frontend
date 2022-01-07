@@ -1,18 +1,18 @@
-import { render } from "react-dom";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { render } from "react-dom"
+import { BrowserRouter, Routes, Route } from "react-router-dom"
 
 // CSS files
-import "./reset.css";
-import "./base.css";
+import "./reset.css"
+import "./base.css"
 
 // Pages
-import Home from "./pages/Home";
-import About from "./pages/About";
+import Home from "./pages/Home"
+import About from "./pages/About"
 
 // Components
-import Footer from "./components/Footer";
+import Footer from "./components/Footer"
 
-const rootElement = document.getElementById("root");
+const rootElement = document.getElementById("root")
 render(
   <BrowserRouter>
     <Routes>
@@ -22,4 +22,4 @@ render(
     <Footer />
   </BrowserRouter>,
   rootElement
-);
+)
