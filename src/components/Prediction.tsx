@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { InputContext } from "../contexts/InputContext";
 
 // Component styling
@@ -13,40 +13,60 @@ import {
   setMaleColors,
 } from "../utils/Colors";
 
-type PredictionResult = {
-  clf: string;
-  probability: {
-    M: number;
-    F: number;
-  };
-  text: string;
-};
+// Types
+import { PredictionApiResult, PredictionOutput } from "../utils/Types";
+
+const toPercent = (number: number) => `${Math.round(number * 100)}%`;
 
 const Prediction = () => {
   const [predicting, setPredicting] = useState(false);
-  const input = useContext(InputContext);
-  const [prediction, setPrediction] = useState({
-    clf: "",
-    probability: {
-      M: 0,
-      F: 0,
-    },
-    text: "",
-  });
+  const [genderPrediction, setGrenderPrediction] = useState("");
+  const [error, setError] = useState("");
+  const { state } = useContext(InputContext);
 
-  if (!input.text) {
-    setDefaultColors();
-  }
+  const noPrediction = {
+    M: 0,
+    F: 0,
+  };
+  const [prediction, setPrediction] = useState<PredictionOutput>(noPrediction);
 
-  // Predict if text
-  if (input.text && input.model) {
-    predict(input.text, input.model)
-      .then((res) => setPrediction(res))
-      .catch((e) => <p>Noe gikk galt. Prøv igjen senere</p>);
-  }
+  const PredictionOutput = (prediction: PredictionOutput) => {
+    // Set colors and text on prediction
+    useEffect(() => {
+      if (prediction.M > prediction.F) {
+        setMaleColors();
+        setGrenderPrediction("mann");
+      } else if (prediction.M < prediction.F) {
+        setFemaleColors();
+        setGrenderPrediction("kvinne");
+      } else {
+        setDefaultColors();
+        setGrenderPrediction("begge?");
+      }
+    }, [prediction]);
 
-  const predictionOutput = (props: PredictionResult) => {
-    console.log("render");
+    // Predict if text, set defaults if not
+    useEffect(() => {
+      if (!state.text) {
+        setDefaultColors();
+        setError("");
+        setPrediction(noPrediction);
+      }
+
+      if (state.text && state.model) {
+        if (state.text.length > 10000) {
+          setError("Teksten er for lang. Prøv med en mindre tekst");
+          setPrediction(noPrediction);
+          return;
+        }
+        predict(state.text, state.model)
+          .then((res: PredictionApiResult) =>
+            setPrediction({ M: res.probability.M, F: res.probability.F })
+          )
+          .catch((e) => setError("Noe gikk galt"));
+      }
+    }, [state.text, state.model]);
+
     if (predicting) {
       return (
         <div id={styles.loading}>
@@ -56,33 +76,39 @@ const Prediction = () => {
       );
     }
 
-    if (prediction) {
-      if (props.probability.M > props.probability.F) {
-        setMaleColors();
-      } else if (props.probability.M < props.probability.F) {
-        setFemaleColors();
-      } else {
-        setDefaultColors();
-      }
-
+    if (prediction.M || prediction.F) {
       return (
         <div id={styles.prediction}>
           <p className={styles.separator}>
-            Du er sannsynligvis en <b>{predicting}</b>
+            Du er sannsynligvis en <b>{genderPrediction}</b>
           </p>
-          <p>Sannylighet for mann: {props.probability.M}</p>
-          <p>Sannsynlighet for kvinne: {props.probability.F}</p>
+          <p>Sannylighet for mann: {toPercent(prediction.M)}</p>
+          <p>Sannsynlighet for kvinne: {toPercent(prediction.F)}</p>
         </div>
       );
     }
 
-    return <p></p>;
+    if (error) {
+      return (
+        <div id={styles.prediction}>
+          <p className={styles.error}>{error}</p>
+        </div>
+      );
+    }
+
+    return (
+      <div id={styles.prediction}>
+        <p>
+          ingenting... <i>foreløpig</i> 👀
+        </p>
+      </div>
+    );
   };
 
   return (
     <div id={styles.predictionContainer}>
       <h2>🤖 Maskinen gjetter 🤖</h2>
-      {predictionOutput(prediction)}
+      {PredictionOutput(prediction)}
     </div>
   );
 };
