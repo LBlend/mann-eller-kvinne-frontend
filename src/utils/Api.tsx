@@ -3,7 +3,7 @@ const apiBaseUrl = import.meta.env.VITE_API_URL;
 export const predict = async (text: String, model: String) => {
   const data = {
     text: text,
-    clf: model ? model : "bayes",
+    clf: model,
   };
   const response = await fetch(`${apiBaseUrl}`, {
     method: "POST",
