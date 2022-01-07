@@ -2,6 +2,7 @@
 
 :root {
   --background-color: hsl(250, 20%, 10%);
+  --text-color: white;
   --link-color: hsl(40, 100%, 50%);
   --link-color-hover: hsl(40, 100%, 70%);
 }
@@ -9,7 +10,7 @@
 body {
   background-color: var(--background-color);
   transition: background-color 0.25s ease-in;
-  color: white;
+  color: var(--text-color);
   line-height: 1.6;
   font-family: "Poppins", sans-serif;
 }
