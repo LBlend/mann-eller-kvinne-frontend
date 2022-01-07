@@ -16,6 +16,7 @@ export const setDefaultColors = () => {
 
 export const setFemaleColors = () => {
   root?.style?.setProperty("--background-color", "hsl(350 50% 50%)");
+  root?.style?.setProperty("--text-color", "white");
   root?.style?.setProperty("--link-color", "hsl(60 100% 85%)");
   root?.style?.setProperty("--link-color-hover", "hsl(165 100% 85%)");
 };
