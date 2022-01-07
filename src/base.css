@@ -25,10 +25,12 @@ body {
 }
 
 a {
+  transition: color 0.25s ease-in;
   text-decoration: none;
   color: var(--link-color);
 }
 a:hover {
+  transition: color 0.25s ease-in;
   color: var(--link-color-hover);
 }
 
