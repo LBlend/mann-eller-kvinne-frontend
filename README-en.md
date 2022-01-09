@@ -10,7 +10,7 @@ This is the frontend part of the *mann-eller-kvinne* project. For more informati
 
 <details>
 
-<summary>Manual installation</summary>
+<summary>Manual installation (developer mode)</summary>
 
 0. Clone the repo and install dependencies
     - node.js
@@ -34,7 +34,7 @@ yarn dev
 
 <details>
 
-<summary>Docker</summary>
+<summary>Docker (deployment)</summary>
 
 1. Fetch the docker image
 
