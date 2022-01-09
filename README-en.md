@@ -18,7 +18,9 @@ This is the frontend part of the *mann-eller-kvinne* project. For more informati
 yarn install
 ```
 
-2. Run the web app
+2. Create a copy of the [.env.example](.env.example) file and name it `.env`. Then, replace the URL within it with one pointing at your own instance of the backend.
+
+3. Run the web app
 
 ```
 yarn dev
