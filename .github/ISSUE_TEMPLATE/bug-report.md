@@ -1,4 +1,4 @@
-# Norsk 🇳🇴
+# 🇳🇴 Norsk
 
 ## Hva er galt?
 
@@ -19,7 +19,7 @@ Forklar hvordan man kan reprodusere feilen.
 
 Skriv hva enn du føler er relevant her.
 
-# English 🇬🇧
+# 🇬🇧 English
 
 ## What's the issue?
 
