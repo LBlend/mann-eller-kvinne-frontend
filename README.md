@@ -23,3 +23,7 @@ yarn install
 ```
 yarn dev
 ```
+
+## Bidra
+
+Les [bidragsguiden](CONTRIBUTING.md) før du gjør noe.

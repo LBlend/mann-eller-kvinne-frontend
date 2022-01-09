@@ -23,3 +23,7 @@ yarn install
 ```
 yarn dev
 ```
+
+## Contributing
+
+See the [contribution guidelines](CONTRIBUTING.md) before getting started.
