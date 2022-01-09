@@ -8,6 +8,10 @@ This is the frontend part of the *mann-eller-kvinne* project. For more informati
 
 ## Get started
 
+<details>
+
+<summary>Manual installation</summary>
+
 0. Clone the repo and install dependencies
     - node.js
     - yarn
@@ -25,6 +29,16 @@ yarn install
 ```
 yarn dev
 ```
+
+</details>
+
+<details>
+
+<summary>Docker</summary>
+
+Documentation coming soon™
+
+</details>
 
 ## Contributing
 

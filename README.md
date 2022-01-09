@@ -8,6 +8,10 @@ Dette er frontenden for prosjektet *mann-eller-kvinne*. For mer info om prosjekt
 
 ## Kom i gang
 
+<details>
+
+<summary>Manuell installasjon</summary>
+
 0. Klon repoet og last ned avhengighetene:
     - node.js
     - yarn
@@ -26,6 +30,16 @@ yarn install
 ```
 yarn dev
 ```
+
+</details>
+
+<details>
+
+<summary>Docker</summary>
+
+Dokumentasjon kommer snart™
+
+</details>
 
 ## Bidra
 
