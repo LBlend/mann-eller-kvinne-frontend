@@ -37,7 +37,19 @@ yarn dev
 
 <summary>Docker</summary>
 
-Dokumentasjon kommer snart™
+1. Hent dockerbildet
+
+```
+docker pull ghcr.io/lblend/mann-eller-kvinne-forntend:main-<versionnummer>
+```
+
+Husk å endre `<versionnummer` til ønsket versjon.
+
+2. Lag og kjør en dockercontainer
+
+```
+docker run -p 3000:3000 <imageId>
+```
 
 </details>
 

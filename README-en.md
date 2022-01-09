@@ -36,7 +36,19 @@ yarn dev
 
 <summary>Docker</summary>
 
-Documentation coming soon™
+1. Fetch the docker image
+
+```
+docker pull ghcr.io/lblend/mann-eller-kvinne-forntend:main-<version-number>
+```
+
+Remember to change the `<version-number>` to your desired version
+
+2. Create and run a container
+
+```
+docker run -p 3000:3000 <imageId>
+```
 
 </details>
 
