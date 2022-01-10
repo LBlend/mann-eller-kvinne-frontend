@@ -23,7 +23,7 @@ Dette er frontenden for prosjektet _mann-eller-kvinne_. For mer info om prosjekt
 yarn install
 ```
 
-2. Lag en kopi av filen [env.example](env.example) og gi den navnet `.env`. Bytt så ut URLen med den som peker mot din egen backend
+2. Lag en kopi av filen [env.example](env.example) og gi den navnet `.env`. Bytt så ut URLen med en som peker mot din egen backend
 
 3. Kjør webappen
 
