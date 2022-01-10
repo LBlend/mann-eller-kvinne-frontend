@@ -12,9 +12,9 @@ RUN yarn install
 
 COPY . ./
 
-RUN yarn build
+ENV PORT=3000 VITE_API_URL=http://localhost:5000/mann-eller-kvinne
 
-ENV PORT=3000
+RUN yarn build
 
 EXPOSE 3000
 
