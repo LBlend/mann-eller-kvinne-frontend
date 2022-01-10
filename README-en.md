@@ -2,7 +2,7 @@
 
 [🇳🇴 Norwgian](README.md)
 
-This is the frontend part of the *mann-eller-kvinne* project. For more information about the project, see the [backend repo](https://github.com/LBlend/mann-eller-kvinne)
+This is the frontend part of the _mann-eller-kvinne_ project. For more information about the project, see the [backend repo](https://github.com/LBlend/mann-eller-kvinne)
 
 ![Logo](https://raw.githubusercontent.com/LBlend/mann-eller-kvinne/main/.static/mann-eller-kvinne.png)
 
@@ -13,8 +13,9 @@ This is the frontend part of the *mann-eller-kvinne* project. For more informati
 <summary>Manual installation (developer mode)</summary>
 
 0. Clone the repo and install dependencies
-    - node.js
-    - yarn
+
+   - node.js
+   - yarn
 
 1. Install the project dependencies
 
@@ -36,19 +37,37 @@ yarn dev
 
 <summary>Docker (deployment)</summary>
 
-1. Fetch the docker image
+### Option 1 - Use a prebuilt image
+
+1. Run the webapp
 
 ```
-docker pull ghcr.io/lblend/mann-eller-kvinne-forntend:main-<version-number>
+docker run -d -p 3000:3000 --name mann-eller-kvinne-frontend ghcr.io/lblend/mann-eller-kvinne-forntend:latest
 ```
 
-Remember to change the `<version-number>` to your desired version
+You are free to change the variables as you desire.
 
-2. Create and run a container
+_Note that by choosing this option you can't set the address for the backend yourself. You are forced to host your backend on `http://localhost:5000`. This is due to the javascript bundler "vite" not allowing you to set environment variables at run time, only at build time. Is this stupid? Yes, however it is out of our control and we'll just have to deal with it._
+
+### Option 2 - Build your own docker image
+
+1. Clone the repo
+
+2. Make sure to go into the [Dockerfile](Dockerfile) and point the `VITE_API_URL` to your backend instance.
+
+3. Build the Docker image
 
 ```
-docker run -p 3000:3000 <imageId>
+docker build -t mann-eller-kvinne-frontend .
 ```
+
+4. Create a container and run it
+
+```
+docker run -d -p 3000:3000 --name mann-eller-kvinne-frontend mann-eller-kvinne-frontend
+```
+
+Note that if you've changed the running port in the dockerfile, you need to change the portnumber in the command as well.
 
 </details>
 

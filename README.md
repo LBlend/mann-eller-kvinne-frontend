@@ -2,7 +2,7 @@
 
 [🇬🇧 English](README-en.md)
 
-Dette er frontenden for prosjektet *mann-eller-kvinne*. For mer info om prosjektet, se [backendrepoet](https://github.com/LBlend/mann-eller-kvinne)
+Dette er frontenden for prosjektet _mann-eller-kvinne_. For mer info om prosjektet, se [backendrepoet](https://github.com/LBlend/mann-eller-kvinne)
 
 ![Logo](https://raw.githubusercontent.com/LBlend/mann-eller-kvinne/main/.static/mann-eller-kvinne.png)
 
@@ -13,8 +13,9 @@ Dette er frontenden for prosjektet *mann-eller-kvinne*. For mer info om prosjekt
 <summary>Manuell installasjon (developer mode)</summary>
 
 0. Klon repoet og last ned avhengighetene:
-    - node.js
-    - yarn
+
+   - node.js
+   - yarn
 
 1. Installer prosjektavhengighetene
 
@@ -23,7 +24,6 @@ yarn install
 ```
 
 2. Lag en kopi av filen [env.example](env.example) og gi den navnet `.env`. Bytt så ut URLen med den som peker mot din egen backend
-
 
 3. Kjør webappen
 
@@ -37,19 +37,37 @@ yarn dev
 
 <summary>Docker (deployment)</summary>
 
-1. Hent dockerbildet
+### Valgmulighet 1 - Bruke forhåndsbygget versjon
+
+1. Skriv denne kommandoen for å kjøre webappen.
 
 ```
-docker pull ghcr.io/lblend/mann-eller-kvinne-forntend:main-<versionnummer>
+docker run -d -p 3000:3000 --name mann-eller-kvinne-frontend ghcr.io/lblend/mann-eller-kvinne-forntend:latest
 ```
 
-Husk å endre `<versionnummer` til ønsket versjon.
+Her kan du så klart endre på variabler som du ønsker
 
-2. Lag og kjør en dockercontainer
+_Merk at ved bruk av denne valgmuligheten så kan du ikke endre på hvilken adresse som peker til backenden. Du er dermed bindet til å sette opp denne på `http://localhost:5000`. Dette er fordi byggesystemet "vite" ikke gjør det mulig å sette environment variables under run time, bare build time. Er det helt på trynet? ja, men dette er dessverre utenfor vår kontroll._
+
+### Valgmulighet 2 - Bygge et dockerbilde på egenhånd
+
+1. Klon repoet
+
+2. Gå inn i [Dockerfila](Dockerfile) og endre på `VITE_API_URL` til å peke mot din backend.
+
+3. Bygg dockerbildet
 
 ```
-docker run -p 3000:3000 <imageId>
+docker build -t mann-eller-kvinne-frontend .
 ```
+
+4. Lag og kjør en dockercontainer
+
+```
+docker run -d -p 3000:3000 --name mann-eller-kvinne-frontend mann-eller-kvinne-frontend
+```
+
+Merk deg her at om du har valgt å endre port i dockerfila, så bør det reflekteres her.
 
 </details>
 
