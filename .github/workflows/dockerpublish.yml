@@ -32,5 +32,5 @@ jobs:
             org.opencontainers.image.title=mann-eller-kvinne-frontend
             org.opencontainers.image.description=The mann-eller-kvinne frontend
           tags: |
-            ghcr.io/lblend/mann-eller-kvinne-forntend:latest
-            ghcr.io/lblend/mann-eller-kvinne-forntend:${{ github.event.release.tag_name }}
+            ghcr.io/lblend/mann-eller-kvinne-frontend:latest
+            ghcr.io/lblend/mann-eller-kvinne-frontend:${{ github.event.release.tag_name }}

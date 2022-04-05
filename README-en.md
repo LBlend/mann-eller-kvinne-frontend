@@ -42,7 +42,7 @@ yarn dev
 1. Run the webapp
 
 ```
-docker run -d -p 3000:3000 --name mann-eller-kvinne-frontend ghcr.io/lblend/mann-eller-kvinne-forntend:latest
+docker run -d -p 3000:3000 --name mann-eller-kvinne-frontend ghcr.io/lblend/mann-eller-kvinne-frontend:latest
 ```
 
 You are free to change the variables as you desire.
