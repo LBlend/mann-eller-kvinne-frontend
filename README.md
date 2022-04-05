@@ -42,7 +42,7 @@ yarn dev
 1. Skriv denne kommandoen for å kjøre webappen.
 
 ```
-docker run -d -p 3000:3000 --name mann-eller-kvinne-frontend ghcr.io/lblend/mann-eller-kvinne-forntend:latest
+docker run -d -p 3000:3000 --name mann-eller-kvinne-frontend ghcr.io/lblend/mann-eller-kvinne-frontend:latest
 ```
 
 Her kan du så klart endre på variabler som du ønsker
