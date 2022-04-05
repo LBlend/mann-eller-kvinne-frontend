@@ -1,15 +1,15 @@
 export type PredictionApiResult = {
-  clf: string
-  probability: {
-    M: number
-    F: number
-  }
   text: string
+  classifier: string
+  probability: {
+    male: number
+    female: number
+  }
 }
 
 export type PredictionOutput = {
-  M: number
-  F: number
+  male: number
+  female: number
 }
 
 export type Input = {

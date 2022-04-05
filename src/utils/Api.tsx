@@ -3,7 +3,7 @@ const apiBaseUrl = import.meta.env.VITE_API_URL || "http://localhost:5000/mann-e
 export const predict = async (text: String, model: String) => {
   const data = {
     text: text,
-    clf: model,
+    classifier: model,
   }
   const response = await fetch(`${apiBaseUrl}`, {
     method: "POST",
