@@ -25,18 +25,18 @@ const Prediction = () => {
   const { state } = useContext(InputContext)
 
   const noPrediction = {
-    M: 0,
-    F: 0,
+    male: 0,
+    female: 0,
   }
   const [prediction, setPrediction] = useState<PredictionOutput>(noPrediction)
 
   const PredictionOutput = (prediction: PredictionOutput) => {
     // Set colors and text on prediction
     useEffect(() => {
-      if (prediction.M > prediction.F) {
+      if (prediction.male > prediction.female) {
         setMaleColors()
         setGrenderPrediction("mann")
-      } else if (prediction.M < prediction.F) {
+      } else if (prediction.male < prediction.female) {
         setFemaleColors()
         setGrenderPrediction("kvinne")
       } else {
@@ -61,7 +61,7 @@ const Prediction = () => {
         }
         predict(state.text, state.model)
           .then((res: PredictionApiResult) =>
-            setPrediction({ M: res.probability.M, F: res.probability.F })
+            setPrediction({ male: res.probability.male, female: res.probability.female })
           )
           .catch(e => setError("Noe gikk galt"))
       }
@@ -76,14 +76,14 @@ const Prediction = () => {
       )
     }
 
-    if (prediction.M || prediction.F) {
+    if (prediction.male || prediction.female) {
       return (
         <div id={styles.prediction}>
           <p className={styles.separator}>
             Du er sannsynligvis en <b>{genderPrediction}</b>
           </p>
-          <p>Sannylighet for mann: {toPercent(prediction.M)}</p>
-          <p>Sannsynlighet for kvinne: {toPercent(prediction.F)}</p>
+          <p>Sannylighet for mann: {toPercent(prediction.male)}</p>
+          <p>Sannsynlighet for kvinne: {toPercent(prediction.female)}</p>
         </div>
       )
     }
