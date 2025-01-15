@@ -34,3 +34,6 @@ jobs:
           tags: |
             ghcr.io/lblend/mann-eller-kvinne-frontend:latest
             ghcr.io/lblend/mann-eller-kvinne-frontend:${{ github.event.release.tag_name }}
+    permissions:
+        contents: read
+        pull-requests: write
