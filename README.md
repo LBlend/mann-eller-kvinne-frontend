@@ -15,12 +15,11 @@ Dette er frontenden for prosjektet _mann-eller-kvinne_. For mer info om prosjekt
 0. Klon repoet og last ned avhengighetene:
 
    - node.js
-   - yarn
 
 1. Installer prosjektavhengighetene
 
 ```
-yarn install
+npm install
 ```
 
 2. Lag en kopi av filen [env.example](env.example) og gi den navnet `.env`. Bytt så ut URLen med en som peker mot din egen backend
@@ -28,7 +27,7 @@ yarn install
 3. Kjør webappen
 
 ```
-yarn dev
+npm run dev
 ```
 
 </details>

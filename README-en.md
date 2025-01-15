@@ -15,12 +15,11 @@ This is the frontend part of the _mann-eller-kvinne_ project. For more informati
 0. Clone the repo and install dependencies
 
    - node.js
-   - yarn
 
 1. Install the project dependencies
 
 ```
-yarn install
+npm install
 ```
 
 2. Create a copy of the [.env.example](.env.example) file and name it `.env`. Then, replace the URL within it with one pointing at your own instance of the backend.
@@ -28,7 +27,7 @@ yarn install
 3. Run the web app
 
 ```
-yarn dev
+npm run dev
 ```
 
 </details>
