@@ -12,7 +12,8 @@ RUN npm ci
 
 COPY . ./
 
-ENV PORT=3000 VITE_API_URL=http://localhost:5000/mann-eller-kvinne
+ARG VITE_API_URL=http://localhost:5000/mann-eller-kvinne
+ENV PORT=3000 VITE_API_URL=$VITE_API_URL
 
 RUN npm run build
 
