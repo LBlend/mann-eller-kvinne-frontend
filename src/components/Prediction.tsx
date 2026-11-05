@@ -18,55 +18,57 @@ import { PredictionApiResult, PredictionOutput } from "../utils/Types"
 
 const toPercent = (number: number) => `${Math.round(number * 100)}%`
 
+const noPrediction: PredictionOutput = {
+  male: 0,
+  female: 0,
+}
+
+const genderOf = (prediction: PredictionOutput) => {
+  if (prediction.male > prediction.female) return "mann"
+  if (prediction.male < prediction.female) return "kvinne"
+  return "begge?"
+}
+
 const Prediction = () => {
   const [predicting, setPredicting] = useState(false)
-  const [genderPrediction, setGrenderPrediction] = useState("")
   const [error, setError] = useState("")
+  const [prediction, setPrediction] = useState<PredictionOutput>(noPrediction)
   const { state } = useContext(InputContext)
 
-  const noPrediction = {
-    male: 0,
-    female: 0,
-  }
-  const [prediction, setPrediction] = useState<PredictionOutput>(noPrediction)
+  // Set colors on prediction
+  useEffect(() => {
+    if (prediction.male > prediction.female) {
+      setMaleColors()
+    } else if (prediction.male < prediction.female) {
+      setFemaleColors()
+    } else {
+      setDefaultColors()
+    }
+  }, [prediction])
 
-  const PredictionOutput = (prediction: PredictionOutput) => {
-    // Set colors and text on prediction
-    useEffect(() => {
-      if (prediction.male > prediction.female) {
-        setMaleColors()
-        setGrenderPrediction("mann")
-      } else if (prediction.male < prediction.female) {
-        setFemaleColors()
-        setGrenderPrediction("kvinne")
-      } else {
-        setDefaultColors()
-        setGrenderPrediction("begge?")
-      }
-    }, [prediction])
+  // Predict if text, set defaults if not
+  useEffect(() => {
+    if (!state.text) {
+      setDefaultColors()
+      setError("")
+      setPrediction(noPrediction)
+    }
 
-    // Predict if text, set defaults if not
-    useEffect(() => {
-      if (!state.text) {
-        setDefaultColors()
-        setError("")
+    if (state.text && state.model) {
+      if (state.text.length > 10000) {
+        setError("Teksten er for lang. Prøv med en mindre tekst")
         setPrediction(noPrediction)
+        return
       }
+      predict(state.text, state.model)
+        .then((res: PredictionApiResult) =>
+          setPrediction({ male: res.probability.male, female: res.probability.female })
+        )
+        .catch(e => setError("Noe gikk galt"))
+    }
+  }, [state.text, state.model])
 
-      if (state.text && state.model) {
-        if (state.text.length > 10000) {
-          setError("Teksten er for lang. Prøv med en mindre tekst")
-          setPrediction(noPrediction)
-          return
-        }
-        predict(state.text, state.model)
-          .then((res: PredictionApiResult) =>
-            setPrediction({ male: res.probability.male, female: res.probability.female })
-          )
-          .catch(e => setError("Noe gikk galt"))
-      }
-    }, [state.text, state.model])
-
+  const renderOutput = () => {
     if (predicting) {
       return (
         <div id={styles.loading}>
@@ -80,7 +82,7 @@ const Prediction = () => {
       return (
         <div id={styles.prediction}>
           <p className={styles.separator}>
-            Du er sannsynligvis en <b>{genderPrediction}</b>
+            Du er sannsynligvis en <b>{genderOf(prediction)}</b>
           </p>
           <p>Sannylighet for mann: {toPercent(prediction.male)}</p>
           <p>Sannsynlighet for kvinne: {toPercent(prediction.female)}</p>
@@ -108,7 +110,7 @@ const Prediction = () => {
   return (
     <div id={styles.predictionContainer}>
       <h2>🤖 Maskinen gjetter 🤖</h2>
-      {PredictionOutput(prediction)}
+      {renderOutput()}
     </div>
   )
 }
