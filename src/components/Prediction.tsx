@@ -6,7 +6,6 @@ import styles from "./Prediction.module.css"
 
 // Utils
 import { predict } from "../utils/Api"
-import { Oval } from "react-loader-spinner"
 import {
   setDefaultColors,
   setFemaleColors,
@@ -88,7 +87,7 @@ const Prediction = () => {
       return (
         <div id={styles.loading}>
           <p>Gjetter...</p>
-          <Oval color="lightblue" height={64} width={64} />
+          <div className={styles.spinner} aria-hidden="true" />
         </div>
       )
     }
