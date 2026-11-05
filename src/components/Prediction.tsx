@@ -48,21 +48,23 @@ const Prediction = () => {
 
   // Predict if text, set defaults if not
   useEffect(() => {
-    if (!state.text) {
+    const text = state.text.trim()
+
+    if (!text) {
       setDefaultColors()
       setError("")
       setPrediction(noPrediction)
     }
 
-    if (state.text && state.model) {
-      if (state.text.length > 10000) {
+    if (text && state.model) {
+      if (text.length > 10000) {
         setError("Teksten er for lang. Prøv med en mindre tekst")
         setPrediction(noPrediction)
         return
       }
       const controller = new AbortController()
       setPredicting(true)
-      predict(state.text, state.model, controller.signal)
+      predict(text, state.model, controller.signal)
         .then((res: PredictionApiResult) => {
           if (controller.signal.aborted) return
           setError("")
