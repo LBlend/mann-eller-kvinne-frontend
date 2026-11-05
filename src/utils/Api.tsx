@@ -1,6 +1,6 @@
 const apiBaseUrl = import.meta.env.VITE_API_URL || "http://localhost:5000/mann-eller-kvinne"
 
-export const predict = async (text: String, model: String) => {
+export const predict = async (text: String, model: String, signal?: AbortSignal) => {
   const data = {
     text: text,
     classifier: model,
@@ -11,6 +11,7 @@ export const predict = async (text: String, model: String) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(data),
+    signal,
   })
   return await response.json()
 }

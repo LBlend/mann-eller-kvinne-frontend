@@ -60,13 +60,22 @@ const Prediction = () => {
         setPrediction(noPrediction)
         return
       }
+      const controller = new AbortController()
       setPredicting(true)
-      predict(state.text, state.model)
-        .then((res: PredictionApiResult) =>
+      predict(state.text, state.model, controller.signal)
+        .then((res: PredictionApiResult) => {
+          if (controller.signal.aborted) return
           setPrediction({ male: res.probability.male, female: res.probability.female })
-        )
-        .catch(e => setError("Noe gikk galt"))
-        .finally(() => setPredicting(false))
+        })
+        .catch(e => {
+          if (controller.signal.aborted) return
+          setError("Noe gikk galt")
+        })
+        .finally(() => {
+          if (controller.signal.aborted) return
+          setPredicting(false)
+        })
+      return () => controller.abort()
     }
   }, [state.text, state.model])
 
