@@ -2,6 +2,7 @@
   "name": "mann-eller-kvinne-frontend",
   "version": "4.0.0",
   "license": "GPL-3.0",
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
