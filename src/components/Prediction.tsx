@@ -99,7 +99,7 @@ const Prediction = () => {
           <p className={styles.separator}>
             Du er sannsynligvis en <b>{genderOf(prediction)}</b>
           </p>
-          <p>Sannylighet for mann: {toPercent(prediction.male)}</p>
+          <p>Sannsynlighet for mann: {toPercent(prediction.male)}</p>
           <p>Sannsynlighet for kvinne: {toPercent(prediction.female)}</p>
         </div>
       )
