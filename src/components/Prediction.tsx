@@ -65,11 +65,13 @@ const Prediction = () => {
       predict(state.text, state.model, controller.signal)
         .then((res: PredictionApiResult) => {
           if (controller.signal.aborted) return
+          setError("")
           setPrediction({ male: res.probability.male, female: res.probability.female })
         })
         .catch(e => {
           if (controller.signal.aborted) return
           setError("Noe gikk galt")
+          setPrediction(noPrediction)
         })
         .finally(() => {
           if (controller.signal.aborted) return
