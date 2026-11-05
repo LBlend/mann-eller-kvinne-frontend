@@ -60,11 +60,13 @@ const Prediction = () => {
         setPrediction(noPrediction)
         return
       }
+      setPredicting(true)
       predict(state.text, state.model)
         .then((res: PredictionApiResult) =>
           setPrediction({ male: res.probability.male, female: res.probability.female })
         )
         .catch(e => setError("Noe gikk galt"))
+        .finally(() => setPredicting(false))
     }
   }, [state.text, state.model])
 
