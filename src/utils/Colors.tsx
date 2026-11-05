@@ -1,5 +1,3 @@
-const root = document.querySelector(":root")
-
 const defaults = {
   background: "hsl(250, 20%, 10%)",
   text: "white",
