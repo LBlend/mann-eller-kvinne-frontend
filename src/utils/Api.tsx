@@ -13,5 +13,8 @@ export const predict = async (text: String, model: String, signal?: AbortSignal)
     body: JSON.stringify(data),
     signal,
   })
+  if (!response.ok) {
+    throw new Error(`Prediction request failed with status ${response.status}`)
+  }
   return await response.json()
 }
