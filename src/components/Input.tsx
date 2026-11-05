@@ -1,20 +1,21 @@
 import React, { useContext } from "react"
 import { useDebouncedCallback } from "use-debounce"
 import { InputContext } from "../contexts/InputContext"
+import { Model } from "../utils/Types"
 
 // Component styling
 import styles from "./Input.module.css"
 
 const Input = () => {
   const { setInput, state } = useContext(InputContext)
-  const debounced = useDebouncedCallback(value => {
+  const debounced = useDebouncedCallback((value: string) => {
     setInput({ ...state, text: value })
   }, 1000)
 
   const inputHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setInput({
       ...state,
-      [e.target.name]: e.target.value,
+      model: e.target.value as Model,
     })
   }
 

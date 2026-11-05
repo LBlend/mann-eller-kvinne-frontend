@@ -14,7 +14,7 @@ import {
 } from "../utils/Colors"
 
 // Types
-import { PredictionApiResult, PredictionOutput } from "../utils/Types"
+import { PredictionOutput } from "../utils/Types"
 
 const toPercent = (number: number) => `${Math.round(number * 100)}%`
 
@@ -65,7 +65,7 @@ const Prediction = () => {
       const controller = new AbortController()
       setPredicting(true)
       predict(text, state.model, controller.signal)
-        .then((res: PredictionApiResult) => {
+        .then(res => {
           if (controller.signal.aborted) return
           setError("")
           setPrediction({ male: res.probability.male, female: res.probability.female })

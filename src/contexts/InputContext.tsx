@@ -1,17 +1,16 @@
-import { createContext, useMemo, useState } from "react"
+import { createContext, ReactNode, useMemo, useState } from "react"
 
 import { Input } from "../utils/Types"
 
+const defaultInput: Input = { text: "", model: "bayes" }
+
 export const InputContext = createContext({
-  state: { text: "", model: "bayes" },
-  setInput: (input: Input) => {},
+  state: defaultInput,
+  setInput: (_input: Input) => {},
 })
 
-export const InputContextProvider = (props: any) => {
-  const [state, setState] = useState({
-    text: "",
-    model: "bayes",
-  })
+export const InputContextProvider = (props: { children: ReactNode }) => {
+  const [state, setState] = useState<Input>(defaultInput)
 
   const provider = useMemo(
     () => ({
