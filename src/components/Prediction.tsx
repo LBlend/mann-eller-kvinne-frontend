@@ -67,7 +67,10 @@ const Prediction = () => {
         .then(res => {
           if (controller.signal.aborted) return
           setError("")
-          setPrediction({ male: res.probability.male, female: res.probability.female })
+          setPrediction({
+            male: res.probability.male,
+            female: res.probability.female,
+          })
         })
         .catch(e => {
           if (controller.signal.aborted) return

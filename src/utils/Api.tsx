@@ -1,6 +1,7 @@
 import { Model, PredictionApiResult } from "./Types"
 
-const apiBaseUrl = import.meta.env.VITE_API_URL || "http://localhost:5000/mann-eller-kvinne"
+const apiBaseUrl =
+  import.meta.env.VITE_API_URL || "http://localhost:5000/mann-eller-kvinne"
 
 export const predict = async (
   text: string,
