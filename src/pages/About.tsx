@@ -1,3 +1,4 @@
+import { useEffect } from "react"
 import { Link } from "react-router-dom"
 
 // Page styling
@@ -10,7 +11,10 @@ import { setDefaultColors } from "../utils/Colors"
 import Logo from "../assets/mann-eller-kvinne.png"
 
 const About = () => {
-  setDefaultColors()
+  useEffect(() => {
+    setDefaultColors()
+  }, [])
+
   return (
     <>
       <nav>
