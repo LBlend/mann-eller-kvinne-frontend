@@ -1,7 +1,12 @@
 import { Model, PredictionApiResult } from "./Types"
 
-const apiBaseUrl =
+const defaultApiUrl =
   import.meta.env.VITE_API_URL || "http://localhost:5000/mann-eller-kvinne"
+
+const apiUrl: Promise<string> = fetch("/config.json")
+  .then(response => (response.ok ? response.json() : {}))
+  .then((config: { apiUrl?: string }) => config.apiUrl || defaultApiUrl)
+  .catch(() => defaultApiUrl)
 
 export const predict = async (
   text: string,
@@ -12,7 +17,7 @@ export const predict = async (
     text: text,
     classifier: model,
   }
-  const response = await fetch(`${apiBaseUrl}`, {
+  const response = await fetch(await apiUrl, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

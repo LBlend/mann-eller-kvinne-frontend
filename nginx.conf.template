@@ -8,6 +8,12 @@ server {
         try_files $uri $uri/ /index.html;
     }
 
+    location = /config.json {
+        default_type application/json;
+        add_header Cache-Control "no-cache";
+        return 200 '{ "apiUrl": "${VITE_API_URL}" }';
+    }
+
     location /assets/ {
         add_header Cache-Control "public, max-age=31536000, immutable";
         try_files $uri =404;
