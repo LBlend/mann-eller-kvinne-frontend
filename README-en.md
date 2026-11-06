@@ -1,6 +1,6 @@
 # mann-eller-kvinne-frontend
 
-[🇳🇴 Norwgian](README.md)
+[🇳🇴 Norwegian](README.md)
 
 This is the frontend part of the _mann-eller-kvinne_ project. For more information about the project, see the [backend repo](https://github.com/LBlend/mann-eller-kvinne)
 
@@ -14,7 +14,7 @@ This is the frontend part of the _mann-eller-kvinne_ project. For more informati
 
 0. Clone the repo and install dependencies
 
-   - node.js
+   - Node.js (LTS)
 
 1. Install the project dependencies
 
@@ -44,29 +44,25 @@ npm run dev
 docker run -d -p 3000:3000 --name mann-eller-kvinne-frontend ghcr.io/lblend/mann-eller-kvinne-frontend:latest
 ```
 
-You are free to change the variables as you desire.
-
-_Note that by choosing this option you can't set the address for the backend yourself. You are forced to host your backend on `http://localhost:5000`. This is due to the javascript bundler "vite" not allowing you to set environment variables at run time, only at build time. Is this stupid? Yes, however it is out of our control and we'll just have to deal with it._
+_Note that the backend address is built into the image, because Vite only reads environment variables at build time. Unless stated otherwise, the prebuilt image expects the backend at `http://localhost:5000`. To use another backend, build your own image (option 2)._
 
 ### Option 2 - Build your own docker image
 
 1. Clone the repo
 
-2. Make sure to go into the [Dockerfile](Dockerfile) and point the `VITE_API_URL` to your backend instance.
-
-3. Build the Docker image
+2. Build the Docker image, pointing `VITE_API_URL` at your backend instance
 
 ```
-docker build -t mann-eller-kvinne-frontend .
+docker build --build-arg VITE_API_URL=https://your-backend.example.com/mann-eller-kvinne -t mann-eller-kvinne-frontend .
 ```
 
-4. Create a container and run it
+3. Create a container and run it
 
 ```
 docker run -d -p 3000:3000 --name mann-eller-kvinne-frontend mann-eller-kvinne-frontend
 ```
 
-Note that if you've changed the running port in the dockerfile, you need to change the portnumber in the command as well.
+The container listens on port 3000. To use another port on the host, change the first number, e.g. `-p 8080:3000`.
 
 </details>
 

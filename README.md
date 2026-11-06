@@ -14,7 +14,7 @@ Dette er frontenden for prosjektet _mann-eller-kvinne_. For mer info om prosjekt
 
 0. Klon repoet og last ned avhengighetene:
 
-   - node.js
+   - Node.js (LTS)
 
 1. Installer prosjektavhengighetene
 
@@ -22,7 +22,7 @@ Dette er frontenden for prosjektet _mann-eller-kvinne_. For mer info om prosjekt
 npm install
 ```
 
-2. Lag en kopi av filen [env.example](env.example) og gi den navnet `.env`. Bytt så ut URLen med en som peker mot din egen backend
+2. Lag en kopi av filen [.env.example](.env.example) og gi den navnet `.env`. Bytt så ut URLen med en som peker mot din egen backend
 
 3. Kjør webappen
 
@@ -44,29 +44,25 @@ npm run dev
 docker run -d -p 3000:3000 --name mann-eller-kvinne-frontend ghcr.io/lblend/mann-eller-kvinne-frontend:latest
 ```
 
-Her kan du så klart endre på variabler som du ønsker
-
-_Merk at ved bruk av denne valgmuligheten så kan du ikke endre på hvilken adresse som peker til backenden. Du er dermed bindet til å sette opp denne på `http://localhost:5000`. Dette er fordi byggesystemet "vite" ikke gjør det mulig å sette environment variables under run time, bare build time. Er det helt på trynet? ja, men dette er dessverre utenfor vår kontroll._
+_Merk at adressen til backenden er bygget inn i bildet, fordi Vite bare leser environment variables når appen bygges. Med mindre noe annet er oppgitt, forventer det forhåndsbygde bildet at backenden kjører på `http://localhost:5000`. Vil du bruke en annen backend, må du bygge bildet selv (valgmulighet 2)._
 
 ### Valgmulighet 2 - Bygge et dockerbilde på egenhånd
 
 1. Klon repoet
 
-2. Gå inn i [Dockerfila](Dockerfile) og endre på `VITE_API_URL` til å peke mot din backend.
-
-3. Bygg dockerbildet
+2. Bygg dockerbildet, med `VITE_API_URL` satt til adressen til din backend
 
 ```
-docker build -t mann-eller-kvinne-frontend .
+docker build --build-arg VITE_API_URL=https://din-backend.example.com/mann-eller-kvinne -t mann-eller-kvinne-frontend .
 ```
 
-4. Lag og kjør en dockercontainer
+3. Lag og kjør en dockercontainer
 
 ```
 docker run -d -p 3000:3000 --name mann-eller-kvinne-frontend mann-eller-kvinne-frontend
 ```
 
-Merk deg her at om du har valgt å endre port i dockerfila, så bør det reflekteres her.
+Containeren lytter på port 3000. Vil du bruke en annen port på maskinen din, endrer du det første tallet, f.eks. `-p 8080:3000`.
 
 </details>
 
