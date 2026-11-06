@@ -1,6 +1,6 @@
 # Changelog
 
-## [4.1.0](https://github.com/LBlend/mann-eller-kvinne-frontend/compare/mann-eller-kvinne-frontend-4.0.0...mann-eller-kvinne-frontend-4.1.0) (2026-11-06)
+## [4.1.0](https://github.com/LBlend/mann-eller-kvinne-frontend/compare/4.0.0...4.1.0) (2026-11-06)
 
 
 ### Features
