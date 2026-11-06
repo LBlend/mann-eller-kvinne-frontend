@@ -38,28 +38,30 @@ npm run dev
 
 ### Valgmulighet 1 - Bruke forhåndsbygget versjon
 
-1. Skriv denne kommandoen for å kjøre webappen.
+1. Kjør webappen, med `VITE_API_URL` satt til adressen til din backend
 
 ```
-docker run -d -p 3000:3000 --name mann-eller-kvinne-frontend ghcr.io/lblend/mann-eller-kvinne-frontend:latest
+docker run -d -p 3000:3000 -e VITE_API_URL=https://din-backend.example.com/mann-eller-kvinne --name mann-eller-kvinne-frontend ghcr.io/lblend/mann-eller-kvinne-frontend:latest
 ```
 
-_Merk at adressen til backenden er bygget inn i bildet, fordi Vite bare leser environment variables når appen bygges. Med mindre noe annet er oppgitt, forventer det forhåndsbygde bildet at backenden kjører på `http://localhost:5000`. Vil du bruke en annen backend, må du bygge bildet selv (valgmulighet 2)._
+Du kan også legge variabelen i en `.env`-fil (se [.env.example](.env.example)) og bruke `--env-file .env` i stedet for `-e`. Uten den forventer webappen at backenden kjører på `http://localhost:5000/mann-eller-kvinne`.
+
+_Merk at adressen brukes av nettleseren til de som besøker siden, så den må være tilgjengelig fra deres maskiner. Backenden må også tillate webappens adresse i innstillingen `ALLOWED_ORIGINS`._
 
 ### Valgmulighet 2 - Bygge et dockerbilde på egenhånd
 
 1. Klon repoet
 
-2. Bygg dockerbildet, med `VITE_API_URL` satt til adressen til din backend
+2. Bygg dockerbildet
 
 ```
-docker build --build-arg VITE_API_URL=https://din-backend.example.com/mann-eller-kvinne -t mann-eller-kvinne-frontend .
+docker build -t mann-eller-kvinne-frontend .
 ```
 
-3. Lag og kjør en dockercontainer
+3. Lag og kjør en dockercontainer, konfigurert på samme måte som i valgmulighet 1
 
 ```
-docker run -d -p 3000:3000 --name mann-eller-kvinne-frontend mann-eller-kvinne-frontend
+docker run -d -p 3000:3000 --env-file .env --name mann-eller-kvinne-frontend mann-eller-kvinne-frontend
 ```
 
 Containeren lytter på port 3000. Vil du bruke en annen port på maskinen din, endrer du det første tallet, f.eks. `-p 8080:3000`.

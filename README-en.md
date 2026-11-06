@@ -38,28 +38,30 @@ npm run dev
 
 ### Option 1 - Use a prebuilt image
 
-1. Run the webapp
+1. Run the webapp, with `VITE_API_URL` pointing at your backend instance
 
 ```
-docker run -d -p 3000:3000 --name mann-eller-kvinne-frontend ghcr.io/lblend/mann-eller-kvinne-frontend:latest
+docker run -d -p 3000:3000 -e VITE_API_URL=https://your-backend.example.com/mann-eller-kvinne --name mann-eller-kvinne-frontend ghcr.io/lblend/mann-eller-kvinne-frontend:latest
 ```
 
-_Note that the backend address is built into the image, because Vite only reads environment variables at build time. Unless stated otherwise, the prebuilt image expects the backend at `http://localhost:5000`. To use another backend, build your own image (option 2)._
+You can also put the variable in a `.env` file (see [.env.example](.env.example)) and pass it with `--env-file .env` instead of `-e`. Without it, the webapp expects the backend at `http://localhost:5000/mann-eller-kvinne`.
+
+_Note that the address is used by the visitors' browsers, so it has to be reachable from their machines. The backend also has to allow the webapp's address in its `ALLOWED_ORIGINS` setting._
 
 ### Option 2 - Build your own docker image
 
 1. Clone the repo
 
-2. Build the Docker image, pointing `VITE_API_URL` at your backend instance
+2. Build the Docker image
 
 ```
-docker build --build-arg VITE_API_URL=https://your-backend.example.com/mann-eller-kvinne -t mann-eller-kvinne-frontend .
+docker build -t mann-eller-kvinne-frontend .
 ```
 
-3. Create a container and run it
+3. Create a container and run it, configured the same way as in option 1
 
 ```
-docker run -d -p 3000:3000 --name mann-eller-kvinne-frontend mann-eller-kvinne-frontend
+docker run -d -p 3000:3000 --env-file .env --name mann-eller-kvinne-frontend mann-eller-kvinne-frontend
 ```
 
 The container listens on port 3000. To use another port on the host, change the first number, e.g. `-p 8080:3000`.
